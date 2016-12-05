@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 
 export default class BeaconMessages extends Component {
   render() {
@@ -8,13 +8,6 @@ export default class BeaconMessages extends Component {
         <Text style={styles.welcome}>
           Look for messages!
         </Text>
-        {/*<Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>*/}
       </View>
     );
   }
@@ -25,16 +18,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#9dc3bf',
   },
   welcome: {
     fontSize: 20,
+    fontFamily: 'Avenir',
     textAlign: 'center',
+    color: '#fff',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
