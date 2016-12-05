@@ -38,7 +38,7 @@ export default class Forms extends Component {
           style={stylesComponent.button}
           underlayColor={constants.actionColor}
           onPress={this.props.onPress}>
-          <Text style={stylesGlobal.actionText}>Leave message 💌</Text>
+          <Text style={stylesGlobal.actionText}>LEAVE MESSAGE 💌</Text>
         </TouchableHighlight>
       </View>
     );
