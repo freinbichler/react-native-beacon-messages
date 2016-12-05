@@ -55,6 +55,7 @@ export default class BeaconMessages extends Component {
     });
     return (
       <View style={styles.container}>
+      <Image source={require('./images/message_icon.png')} style={styles.icon}/>
         <Text style={styles.welcome}>
           Look for messages!
         </Text>
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'column',
     backgroundColor: '#9dc3bf',
   },
   welcome: {
@@ -78,5 +80,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#fff',
     margin: 10,
+  },
+  icon: {
+    width: 60,
+    height: 40,
+    margin: 10
   }
 });
