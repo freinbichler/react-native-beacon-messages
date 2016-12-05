@@ -6,7 +6,7 @@ export default class Landing extends Component {
   constructor(props) {
     super(props);
 
-    this.range = this.colorRange([229,245,249], [44,162,95], 100)
+    this.range = this.colorRange([252,141,89], [153,213,148], 50)
   }
 
   colorRange(firstColor,secondColor, bands) {
@@ -18,8 +18,8 @@ export default class Landing extends Component {
   }
 
   calculateColor() {
-    if(this.props.beacons.length) {
-      let rssi = Math.abs(this.props.beacons[0].rssi);
+    if(this.props.beacons.length && this.props.beacons[0].proximity != "unknown") {
+      let rssi = 100 - Math.abs(this.props.beacons[0].rssi);
 
       var r = Math.round(this.range[0][0] - this.range[2][0] * rssi);
       var g = Math.round(this.range[0][1] - this.range[2][1] * rssi);
