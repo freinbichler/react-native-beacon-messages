@@ -6,7 +6,7 @@ export default class Landing extends Component {
   constructor(props) {
     super(props);
 
-    this.range = colorRange([229,245,249], [44,162,95], 100)
+    this.range = this.colorRange([229,245,249], [44,162,95], 100)
   }
 
   colorRange(firstColor,secondColor, bands) {
@@ -25,7 +25,7 @@ export default class Landing extends Component {
       var g = Math.round(this.range[0][1] - this.range[2][1] * rssi);
       var b = Math.round(this.range[0][2] - this.range[2][2] * rssi);
 
-      return `rgba(${r},${g},${b},1)`; 
+      return `rgba(${r},${g},${b},1)`;
     } else {
       return '#9dc3bf';
     }
@@ -38,7 +38,7 @@ export default class Landing extends Component {
       </Text>
     );
     return (
-      <View style={{backgroundColor: this.calculateColor(), 
+      <View style={{backgroundColor: this.calculateColor(),
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',

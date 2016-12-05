@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, TouchableHighlight, Text, Image, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableHighlight, Text, Image, StyleSheet, Button } from 'react-native';
 import { stylesGlobal, constants } from './styles.js';
 
 export default class Forms extends Component {
@@ -18,6 +18,10 @@ export default class Forms extends Component {
   handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
+  }
+
+  handleDismiss() {
+    alert('Dismiss');
   }
 
   render() {
@@ -40,6 +44,11 @@ export default class Forms extends Component {
           onPress={this.props.onPress}>
           <Text style={stylesGlobal.actionText}>LEAVE MESSAGE 💌</Text>
         </TouchableHighlight>
+        <Button
+          onPress={this.handleDismiss}
+          title="Dismiss"
+          color="#FFFFFF"
+        />
       </View>
     );
   }
@@ -57,7 +66,7 @@ const stylesComponent = StyleSheet.create({
   textfield: {
     margin: 10,
     padding: 10,
-    height: 150, 
+    height: 150,
     fontSize: 14,
     fontFamily: 'Avenir Next',
     color: '#fff',
