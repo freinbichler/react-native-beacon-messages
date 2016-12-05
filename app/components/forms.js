@@ -23,7 +23,7 @@ export default class Forms extends Component {
   render() {
     return (
       <View style={stylesComponent.container}>
-        <Image source={require('../images/message_icon.png')} style={stylesGlobal.icon}/>
+        <Image source={require('../images/surprise_icon.png')} style={stylesGlobal.icon}/>
         <Text style={stylesGlobal.message}>
           You found a message!
         </Text>
