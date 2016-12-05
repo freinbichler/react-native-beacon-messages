@@ -23,7 +23,7 @@ export default class Forms extends Component {
   render() {
     return (
       <View style={stylesComponent.container}>
-        <Image source={require('../images/surprise_icon.png')} style={stylesGlobal.icon}/>
+        <Image source={require('../images/surprise.png')} style={stylesComponent.icon}/>
         <Text style={stylesGlobal.message}>
           You found a message!
         </Text>
@@ -77,5 +77,10 @@ const stylesComponent = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 10,
     backgroundColor: "rgba(0,0,0,0.5)"
+  },
+  icon: {
+    width: 60,
+    height: 50,
+    margin: 10
   }
 });
