@@ -25,7 +25,9 @@ export default class BeaconMessages extends Component {
     this.state = {
       beacons: []
     };
+  }
 
+  componentDidMount() {
     // Listen for beacon changes
     var subscription = DeviceEventEmitter.addListener(
       'beaconsDidRange',
@@ -58,6 +60,6 @@ export default class BeaconMessages extends Component {
       }
     });
 
-    return isBeaconImmediate ?  <Forms /> : <Landing beacons={this.state.beacons} />
+    return isBeaconImmediate ? <Forms /> : <Landing beacons={this.state.beacons} />;
   }
 }
