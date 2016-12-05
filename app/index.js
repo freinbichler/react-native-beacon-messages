@@ -23,8 +23,11 @@ export default class BeaconMessages extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      beacons: []
+      beacons: [],
+      isBeaconImmediate: false
     };
+
+    this.setBeaconImmediateLocation = this.setBeaconImmediateLocation.bind(this);
   }
 
   componentDidMount() {
@@ -32,8 +35,15 @@ export default class BeaconMessages extends Component {
     var subscription = DeviceEventEmitter.addListener(
       'beaconsDidRange',
       (data) => {
+        var isBeaconImmediate = this.state.isBeaconImmediate;
+        data.beacons.forEach((beacon) => {
+          if(beacon.proximity === "immediate") {
+            isBeaconImmediate = true;
+          }
+        });
         this.setState({
-          beacons: data.beacons
+          beacons: data.beacons,
+          isBeaconImmediate: isBeaconImmediate
         })
         // alert(data.beacons[0].proximity);
         // data.region - The current region
@@ -52,14 +62,13 @@ export default class BeaconMessages extends Component {
     );
   }
 
-  render() {
-    var isBeaconImmediate = false;
-    this.state.beacons.forEach((beacon) => {
-      if(beacon.proximity === "immediate") {
-        isBeaconImmediate = true;
-      }
+  setBeaconImmediateLocation() {
+    this.setState({
+      isBeaconImmediate: false
     });
+  }
 
-    return isBeaconImmediate ? <Forms /> : <Landing beacons={this.state.beacons} />;
+  render() {
+    return this.state.isBeaconImmediate ? <Forms onDismiss={this.setBeaconImmediateLocation} /> : <Landing beacons={this.state.beacons} />;
   }
 }
