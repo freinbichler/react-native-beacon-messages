@@ -60,6 +60,6 @@ export default class BeaconMessages extends Component {
       }
     });
 
-    return isBeaconImmediate ? <Forms /> : <Landing beacons={this.state.beacons} />;
+    return true ? <Forms /> : <Landing beacons={this.state.beacons} />;
   }
 }

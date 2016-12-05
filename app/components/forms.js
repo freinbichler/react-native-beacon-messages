@@ -22,7 +22,7 @@ export default class Forms extends Component {
 
   render() {
     return (
-      <View style={stylesGlobal.container}>
+      <View style={stylesComponent.container}>
         <Image source={require('../images/message_icon.png')} style={stylesGlobal.icon}/>
         <Text style={stylesGlobal.message}>
           You found a message!
@@ -46,6 +46,14 @@ export default class Forms extends Component {
 }
 
 const stylesComponent = StyleSheet.create({
+  container: {
+    paddingTop: 40,
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'column',
+    backgroundColor: '#9dc3bf',
+  },
   textfield: {
     margin: 10,
     padding: 10,
