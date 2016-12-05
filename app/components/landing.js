@@ -5,25 +5,27 @@ import { stylesGlobal } from './styles.js';
 export default class Landing extends Component {
   constructor(props) {
     super(props);
+
+    this.range = colorRange([229,245,249], [44,162,95], 100)
+  }
+
+  colorRange(firstColor,secondColor, bands) {
+    let delta = [];
+    for (let i = 0; i < 4; i++){
+      delta[i] = (firstColor[i] - secondColor[i]) / (bands + 1);
+    }
+    return [firstColor,secondColor, delta]
   }
 
   calculateColor() {
     if(this.props.beacons.length) {
       let rssi = Math.abs(this.props.beacons[0].rssi);
-      let firstColor = [255, 255, 255]; 
-      let secondColor = [0, 0, 0]; 
-      let bands = 50;
-      let delta = [];
 
-      for (let i = 0; i < 4; i++){
-        delta[i] = (firstColor[i] - secondColor[i]) / (bands + 1);
-      }
+      var r = Math.round(this.range[0][0] - this.range[2][0] * rssi);
+      var g = Math.round(this.range[0][1] - this.range[2][1] * rssi);
+      var b = Math.round(this.range[0][2] - this.range[2][2] * rssi);
 
-      var r = Math.round(a[0] - delta[0] * rssi);
-      var g = Math.round(a[1] - delta[1] * rssi);
-      var b = Math.round(a[2] - delta[2] * rssi);
-
-      return `rgba(${r},${g},${b})`; 
+      return `rgba(${r},${g},${b},1)`; 
     } else {
       return '#9dc3bf';
     }
