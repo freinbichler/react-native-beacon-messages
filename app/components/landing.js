@@ -16,7 +16,7 @@ export default class Landing extends Component {
       let delta = [];
 
       for (let i = 0; i < 4; i++){
-        delta[i] = (a[i] - b[i]) / (bands + 1);
+        delta[i] = (firstColor[i] - secondColor[i]) / (bands + 1);
       }
 
       var r = Math.round(a[0] - delta[0] * rssi);
