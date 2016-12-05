@@ -51,14 +51,13 @@ export default class BeaconMessages extends Component {
   }
 
   render() {
-    var isImmediate = false;
+    var isBeaconImmediate = false;
+    this.state.beacons.forEach((beacon) => {
+      if(beacon.proximity === "immediate") {
+        isBeaconImmediate = true;
+      }
+    });
 
-    const beaconTexts = this.state.beacons.map((beacon) =>
-      <Text key={beacon.minor}>
-        {beacon.minor}: {beacon.proximity} ({beacon.rssi})
-      </Text>
-    );
-
-    return isImmediate ?  <Forms/> : <Landing/>
+    return isBeaconImmediate ?  <Forms /> : <Landing beacons={this.state.beacons} />
   }
 }

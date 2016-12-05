@@ -7,12 +7,18 @@ export default class Landing extends Component {
   }
 
   render() {
+    const beaconTexts = this.props.beacons.map((beacon) =>
+      <Text key={beacon.minor}>
+        {beacon.minor}: {beacon.proximity} ({beacon.rssi})
+      </Text>
+    );
     return (
       <View style={styles.container}>
-      <Image source={require('../images/message_icon.png')} style={styles.icon}/>
-      <Text style={styles.welcome}>
-      Look for messages!
-      </Text>
+        <Image source={require('../images/message_icon.png')} style={styles.icon}/>
+        <Text style={styles.welcome}>
+          Look for messages!
+        </Text>
+        {beaconTexts}
       </View>
     );
   }
