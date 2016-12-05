@@ -20,10 +20,6 @@ export default class Forms extends Component {
     event.preventDefault();
   }
 
-  handleDismiss() {
-    alert('Dismiss');
-  }
-
   render() {
     return (
       <View style={stylesComponent.container}>
@@ -45,7 +41,7 @@ export default class Forms extends Component {
           <Text style={stylesGlobal.actionText}>LEAVE MESSAGE 💌</Text>
         </TouchableHighlight>
         <Button
-          onPress={this.handleDismiss}
+          onPress={this.props.onDismiss}
           title="Dismiss"
           color="#FFFFFF"
         />
