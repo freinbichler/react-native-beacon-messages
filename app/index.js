@@ -23,7 +23,7 @@ export default class BeaconMessages extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      beacons: [{proximity: "..."}]
+      beacons: []
     };
 
     // Listen for beacon changes
@@ -53,12 +53,12 @@ export default class BeaconMessages extends Component {
   render() {
     var isImmediate = false;
 
-    var beaconTexts = [];
-    this.state.beacons.forEach((beacon) => {
-      beaconTexts.push(<Text>{beacon.proximity}</Text>);
-    });
-    
-    return isImmediate ?  <Forms/> : <Landing>{stringi}</Landing>
+    const beaconTexts = this.state.beacons.map((beacon) =>
+      <Text key={beacon.minor}>
+        {beacon.minor}: {beacon.proximity} ({beacon.rssi})
+      </Text>
+    );
+
+    return isImmediate ?  <Forms/> : <Landing/>
   }
 }
-
