@@ -19,9 +19,9 @@ export default class Landing extends Component {
         delta[i] = (firstColor[i] - secondColor[i]) / (bands + 1);
       }
 
-      var r = Math.round(a[0] - delta[0] * rssi);
-      var g = Math.round(a[1] - delta[1] * rssi);
-      var b = Math.round(a[2] - delta[2] * rssi);
+      var r = Math.round(firstColor[0] - delta[0] * rssi);
+      var g = Math.round(firstColor[1] - delta[1] * rssi);
+      var b = Math.round(firstColor[2] - delta[2] * rssi);
 
       return `rgba(${r},${g},${b})`; 
     } else {
