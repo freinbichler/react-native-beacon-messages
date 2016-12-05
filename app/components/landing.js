@@ -6,7 +6,7 @@ export default class Landing extends Component {
   constructor(props) {
     super(props);
 
-    this.range = this.colorRange([252,141,89], [153,213,148], 50)
+    this.range = this.colorRange([157, 195, 191], [70, 112, 107], 50)
   }
 
   colorRange(firstColor,secondColor, bands) {
