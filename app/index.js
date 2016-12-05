@@ -51,7 +51,7 @@ export default class BeaconMessages extends Component {
   }
 
   render() {
-    var isImmediate = false;
+    var isImmediate = true;
 
     const beaconTexts = this.state.beacons.map((beacon) =>
       <Text key={beacon.minor}>
