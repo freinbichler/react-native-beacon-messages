@@ -7,9 +7,9 @@ export default class Landing extends Component {
     super(props);
 
     this.emojis = [
-      [0, '💃'],
-      [2, '🦄'],
-      [3, '☺️'],
+      [2, '💃'],
+      [3, '🦄'],
+      [5, '☺️'],
       [6, '😊'],
       [8, '😐'],
       [12, '😕'],

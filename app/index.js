@@ -51,7 +51,7 @@ export default class BeaconMessages extends Component {
         var immediateBeacon = this.state.immediateBeacon;
         var beaconMessages = this.state.beaconMessages;
         data.beacons.forEach((beacon) => {
-          if(beacon.proximity === "immediate") {
+          if(beacon.accuracy <= 2) {
             isBeaconImmediate = true;
             immediateBeacon = beacon.minor;
             if(immediateBeacon !== this.state.immediateBeacon) {
