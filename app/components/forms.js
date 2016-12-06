@@ -23,28 +23,40 @@ export default class Forms extends Component {
   render() {
     return (
       <View style={stylesComponent.container}>
-        <Image source={require('../images/surprise.png')} style={stylesComponent.icon}/>
-        <Text style={stylesGlobal.message}>
-          You found a message!
+      <Text style={stylesGlobal.logoText}>
+        PEAKON
+      </Text>
+        <Text style={stylesComponent.heading}>
+        Leave a message
         </Text>
+        <TextInput
+          style={stylesComponent.namefield}
+          onChangeText={(text) => this.setState({text})}
+          value={this.state.name}
+          multiline={true}
+          placeholder="Your name"
+        />
         <TextInput
           style={stylesComponent.textfield}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}
           multiline={true}
-          placeholder="Enter a new message for someone else to find"
+          placeholder="Your Message"
         />
         <TouchableHighlight
           style={stylesComponent.button}
           underlayColor={constants.actionColor}
           onPress={this.props.onPress}>
-          <Text style={stylesGlobal.actionText}>LEAVE MESSAGE 💌</Text>
+          <Text style={stylesGlobal.buttonText}>LEAVE IT HERE</Text>
         </TouchableHighlight>
-        <Button
-          onPress={this.props.onDismiss}
-          title="Dismiss"
-          color="#FFFFFF"
-        />
+        <TouchableHighlight
+          underlayColor={constants.actionColor}
+          onPress={this.props.onDismiss}>
+          <Text style={stylesGlobal.dismiss}>DISMISS</Text>
+        </TouchableHighlight>
+        <View style={stylesGlobal.mountainContainer}>
+        <Image source={require('../images/mountain.png')} style={stylesGlobal.mountains}/>
+        </View>
       </View>
     );
   }
@@ -59,24 +71,44 @@ const stylesComponent = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#9dc3bf',
   },
+  namefield: {
+    marginHorizontal: 50,
+    marginVertical: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    height: 35,
+    fontSize: 14,
+    fontFamily: 'Avenir Next',
+    color: constants.bgColor,
+    borderRadius: 10,
+    backgroundColor: "#fff"
+  },
   textfield: {
-    margin: 10,
+    marginHorizontal: 50,
+    marginVertical: 10,
     padding: 10,
     height: 150,
     fontSize: 14,
     fontFamily: 'Avenir Next',
-    color: '#fff',
-    borderWidth: 3,
-    borderColor: '#fff',
+    color: constants.bgColor,
     borderRadius: 10,
-    backgroundColor: "rgba(255,255,255,0.25)"
+    backgroundColor: "#fff"
   },
   button: {
     margin: 5,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 10,
-    backgroundColor: "rgba(0,0,0,0.5)"
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 12,
+    width: 180,
+    backgroundColor: "#fff",
+    marginBottom: 15
+  },
+  heading: {
+    fontFamily: 'American Typewriter',
+    fontSize: 18,
+    color: constants.textColor,
+    textAlign: 'center',
+    marginTop: 15,
   },
   icon: {
     width: 60,

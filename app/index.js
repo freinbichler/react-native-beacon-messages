@@ -35,6 +35,8 @@ export default class BeaconMessages extends Component {
     };
 
     this.setBeaconImmediateLocation = this.setBeaconImmediateLocation.bind(this);
+
+    this.changeView = this.changeView.bind(this);
   }
 
   componentDidMount() {
@@ -113,9 +115,30 @@ export default class BeaconMessages extends Component {
     });
   }
 
+  changeView(view) {
+    let nextView;
+
+    switch(view) {
+      case "landing":
+        nextView = <Landing beacons={this.state.beacons} />;
+        break;
+      case "forms":
+        nextView = <Forms onDismiss={this.setBeaconImmediateLocation} />;
+        break;
+      case "messages":
+        nextView = <Messages onDismiss={this.setBeaconImmediateLocation} messages={this.state.beaconMessages} />;
+        break;
+      case "found":
+        nextView = <Found />;
+        break;
+      default:
+        nextView = <Landing beacons={this.state.beacons} />;
+    }
+
+    return nextView;
+  }
+
   render() {
-    // return <Messages onDismiss={this.setBeaconImmediateLocation} messages={this.state.beaconMessages} />
-    // return <Forms onDismiss={this.setBeaconImmediateLocation} />
-    return this.state.isBeaconImmediate ? <Found /> : <Landing beacons={this.state.beacons} />;
+    return this.state.isBeaconImmediate ? this.changeView('messages') : this.changeView('landing');
   }
 }
