@@ -17,7 +17,9 @@ export default class Forms extends Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    alert('A name was submitted: ' + this.state.name);
+    alert('A text was submitted: ' + this.state.text);
+    this.props.onMessage(this.state.name, this.state.text);
     event.preventDefault();
   }
 
@@ -31,12 +33,17 @@ export default class Forms extends Component {
       <Text style={stylesGlobal.logoText}>
         PEAKON
       </Text>
+        <View>
         <Text style={stylesComponent.heading}>
         Leave a message
         </Text>
+
+        <View style={stylesComponent.separatorShort} ></View>
+        <View style={stylesComponent.separatorLong} ></View>
+        </View>
         <TextInput
           style={stylesComponent.namefield}
-          onChangeText={(text) => this.setState({text})}
+          onChangeText={(name) => this.setState({name})}
           value={this.state.name}
           multiline={true}
           placeholder="Your name"
@@ -51,7 +58,7 @@ export default class Forms extends Component {
         <TouchableHighlight
           style={stylesComponent.button}
           underlayColor={constants.actionColor}
-          onPress={this.props.onPress}>
+          onPress={this.handleSubmit}>
           <Text style={stylesGlobal.buttonText}>LEAVE IT HERE</Text>
         </TouchableHighlight>
         <TouchableHighlight
@@ -114,10 +121,29 @@ const stylesComponent = StyleSheet.create({
     color: constants.textColor,
     textAlign: 'center',
     marginTop: 15,
+    marginBottom: 25,
   },
   icon: {
     width: 60,
     height: 50,
     margin: 10
+  },
+  separatorShort: {
+    borderBottomWidth: 1,
+    borderColor: 'rgba(255,255,255,0.8)',
+    height: 10,
+    width: 140,
+    alignSelf: 'center',
+    position: 'absolute',
+    top: 35, left: 0
+  },
+  separatorLong: {
+    borderBottomWidth: 1,
+    borderColor: 'rgba(255,255,255,0.8)',
+    height: 10,
+    width: 200,
+    alignSelf: 'center',
+    position: 'absolute',
+    top: 40, left: -30
   }
 });
