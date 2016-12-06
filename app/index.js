@@ -152,6 +152,10 @@ export default class BeaconMessages extends Component {
     if(forceUpdate) {
       this.forceUpdate;
       this.setLocked(true);
+
+      if(view === 'found') {
+        this.setLocked(false);
+      }
     }
   }
 
