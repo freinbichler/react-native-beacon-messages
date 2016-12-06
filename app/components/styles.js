@@ -30,6 +30,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Menlo',
     textAlign: 'center'
   },
+  dismiss: {
+    fontSize: 12,
+    fontFamily: 'Menlo',
+    color: constants.textColor,
+  },
   logoText: {
     position: 'absolute',
     top: 30,

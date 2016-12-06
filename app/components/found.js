@@ -12,7 +12,7 @@ export default class Found extends Component {
     return (
       <View style={stylesGlobal.container}>
         <Text style={stylesGlobal.logoText}>
-          PEAKON
+        PEAKON
         </Text>
         <Image source={require('../images/surprise.png')} style={stylesComponent.icon}/>
         <Text style={stylesComponent.heading}>
@@ -34,7 +34,7 @@ export default class Found extends Component {
           <Text style={stylesGlobal.buttonText}>READ BEACON MESSAGES</Text>
         </TouchableHighlight>
         <View style={stylesGlobal.mountainContainer}>
-        <Image source={require('../images/mountain.png')} style={stylesGlobal.mountains}/>
+          <Image source={require('../images/mountain.png')} style={stylesGlobal.mountains}/>
         </View>
       </View>
     );
