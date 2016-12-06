@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, DeviceEventEmitter } from 'react-native'
 import Beacons from 'react-native-ibeacon';
 import Forms from './components/forms';
 import Landing from './components/landing';
+import { firebaseApp } from './config/firebase';
 
 var region = {
   identifier: 'Estimote Candy',
@@ -17,11 +18,12 @@ Beacons.startRangingBeaconsInRegion(region);
 
 Beacons.startUpdatingLocation();
 
-
-
 export default class BeaconMessages extends Component {
   constructor(props) {
     super(props);
+
+    this.itemsRef = firebaseApp.database().ref();
+
     this.state = {
       beacons: [],
       isBeaconImmediate: false
@@ -44,7 +46,7 @@ export default class BeaconMessages extends Component {
         this.setState({
           beacons: data.beacons,
           isBeaconImmediate: isBeaconImmediate
-        })
+        });
         // alert(data.beacons[0].proximity);
         // data.region - The current region
         // data.region.identifier
@@ -60,6 +62,32 @@ export default class BeaconMessages extends Component {
         //    .accuracy - The accuracy of a beacon
       }
     );
+
+    this.listenForItems()
+  }
+
+  listenForItems() {
+    // this.itemsRef.push({ name: "Hubert", text: "Hello World!" });
+
+    this.itemsRef.on('value', (snap) => {
+
+      // get children as an array
+      var items = [];
+      snap.forEach((child) => {
+        items.push({
+          name: child.val().name,
+          text: child.val().text,
+          _key: child.key
+        });
+      });
+
+      console.log(items);
+
+      // this.setState({
+      //   dataSource: this.state.dataSource.cloneWithRows(items)
+      // });
+
+    });
   }
 
   setBeaconImmediateLocation() {
