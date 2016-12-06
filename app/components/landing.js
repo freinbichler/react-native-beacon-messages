@@ -29,7 +29,7 @@ export default class Landing extends Component {
       distance = parseInt(this.props.beacons[0].accuracy);
       const keys = this.emojis.keys;
       const index = 1; 
-      
+
       for (key of keys) {
         if(key < distance) index = key
       }
@@ -41,6 +41,10 @@ export default class Landing extends Component {
         <Text style={stylesComponent.heading}>
           PEAKON
         </Text>
+        <View>
+          <View style={stylesGlobal.separatorShort}></View>
+          <View style={stylesGlobal.separatorLong}></View>
+        </View>
         <Text style={stylesComponent.subheading}>
           FIND BEACONS, GET CLOSER TO THE PEAK AND LEAVE MESSAGES!
         </Text>
@@ -88,6 +92,5 @@ const stylesComponent = StyleSheet.create({
     color: constants.textColor,
     opacity: 0.6,
     textAlign: 'center'
-  }
-
+  },
   });

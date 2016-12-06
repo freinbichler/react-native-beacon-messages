@@ -36,8 +36,10 @@ export default class Messages extends Component {
           <Text style={stylesComponent.heading}>
             Messages
           </Text>
-          <View style={stylesGlobal.separatorShort}></View>
-          <View style={stylesGlobal.separatorLong}></View>
+          <View style={stylesComponent.headingSeparators}>
+            <View style={stylesGlobal.separatorShort}></View>
+            <View style={stylesGlobal.separatorLong}></View>
+          </View>
         </View>
 
         <View style={stylesComponent.flex2}>
@@ -86,6 +88,9 @@ const stylesComponent = StyleSheet.create({
     fontFamily: 'American Typewriter',
     color: constants.textColor,
     textAlign: 'center',
+  },
+  headingSeparators: {
+    marginTop: -20
   },
   icon: {
     width: 60,

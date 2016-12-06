@@ -67,20 +67,16 @@ const styles = StyleSheet.create({
   separatorShort: {
     borderBottomWidth: 1,
     borderColor: 'rgba(255,255,255,0.8)',
-    height: 10,
+    height: 5,
     width: 140,
     alignSelf: 'center',
-    position: 'absolute',
-    top: 20, left: -25
   },
   separatorLong: {
     borderBottomWidth: 1,
     borderColor: 'rgba(255,255,255,0.8)',
-    height: 10,
+    height: 5,
     width: 200,
     alignSelf: 'center',
-    position: 'absolute',
-    top: 25, left: -50
   }
 
 });
