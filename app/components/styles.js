@@ -63,6 +63,24 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'contain', // or 'stretch'
   },
+  separatorShort: {
+    borderBottomWidth: 1,
+    borderColor: 'rgba(255,255,255,0.8)',
+    height: 10,
+    width: 140,
+    alignSelf: 'center',
+    position: 'absolute',
+    top: 20, left: -25
+  },
+  separatorLong: {
+    borderBottomWidth: 1,
+    borderColor: 'rgba(255,255,255,0.8)',
+    height: 10,
+    width: 200,
+    alignSelf: 'center',
+    position: 'absolute',
+    top: 25, left: -50
+  }
 
 });
 

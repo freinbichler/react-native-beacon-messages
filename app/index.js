@@ -149,7 +149,7 @@ export default class BeaconMessages extends Component {
   }
 
   render() {
-    if (!this.locked) this.state.isBeaconImmediate ? this.changeView('messages') : this.changeView('landing');
+    if (!this.locked) this.state.isBeaconImmediate ? this.changeView('found') : this.changeView('landing');
     return this.currentView;
   }
 }
