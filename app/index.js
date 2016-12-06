@@ -99,7 +99,7 @@ export default class BeaconMessages extends Component {
   }
 
   render() {
-    // return <Messages onDismiss={this.setBeaconImmediateLocation} />
+    return <Forms onDismiss={this.setBeaconImmediateLocation} />
     return this.state.isBeaconImmediate ? <Forms onDismiss={this.setBeaconImmediateLocation} /> : <Landing beacons={this.state.beacons} />;
   }
 }
