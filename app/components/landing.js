@@ -6,37 +6,36 @@ export default class Landing extends Component {
   constructor(props) {
     super(props);
 
-    this.range = this.colorRange([70, 112, 107], [157, 195, 191], 50)
-  }
-
-  colorRange(firstColor,secondColor, bands) {
-    let delta = [];
-    for (let i = 0; i < 4; i++){
-      delta[i] = (firstColor[i] - secondColor[i]) / (bands + 1);
-    }
-    return [firstColor,secondColor, delta]
-  }
-
-  calculateColor() {
-    if(this.props.beacons.length && this.props.beacons[0].proximity != "unknown") {
-      let rssi = 100 - Math.abs(this.props.beacons[0].rssi);
-
-      var r = Math.round(this.range[0][0] - this.range[2][0] * rssi);
-      var g = Math.round(this.range[0][1] - this.range[2][1] * rssi);
-      var b = Math.round(this.range[0][2] - this.range[2][2] * rssi);
-
-      return `rgba(${r},${g},${b},1)`;
-    } else {
-      return '#9dc3bf';
+    this.emojis = {
+      1: '💃',
+      2: '🦄',
+      3: '☺️',
+      6: '😊',
+      8: '😐',
+      15: '😞',
+      25: '💩'
     }
   }
 
   render() {
+    let emoji, distance;
     const beaconTexts = this.props.beacons.map((beacon) =>
       <Text key={beacon.minor}>
         {beacon.minor}: {beacon.proximity} ({beacon.accuracy})
       </Text>
     );
+
+    if (this.props.beacons.length) {
+      distance = parseInt(this.props.beacons[0].accuracy);
+      const keys = this.emojis.keys;
+      const index = 1; 
+      
+      for (key of keys) {
+        if(key < distance) index = key
+      }
+      emoji = this.emojis[index]
+    }
+
     return (
       <View style={stylesGlobal.container}>
         <Text style={stylesComponent.heading}>
@@ -48,6 +47,12 @@ export default class Landing extends Component {
         <View style={stylesGlobal.mountainContainer}>
         <Image source={require('../images/mountain.png')} style={stylesGlobal.mountains}/>
         </View>
+        <Text  style={stylesComponent.emoji}>
+        {emoji}
+        </Text>
+        <Text  style={stylesComponent.distance}>
+        {distance}
+        </Text>
         {beaconTexts}
       </View>
     );
@@ -71,5 +76,18 @@ const stylesComponent = StyleSheet.create({
     lineHeight: 17,
     letterSpacing: 1.5,
     marginTop: 20
+  },
+  emoji: {
+    marginVertical: 20,
+    fontSize: 50,
+    textAlign: 'center'
+  },
+  distance: {
+    fontSize: 19,
+    fontFamily: 'Menlo',
+    color: constants.textColor,
+    opacity: 0.6,
+    textAlign: 'center'
   }
+
   });
