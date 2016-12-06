@@ -35,6 +35,8 @@ export default class BeaconMessages extends Component {
     };
 
     this.setBeaconImmediateLocation = this.setBeaconImmediateLocation.bind(this);
+    this.isLocked = false;
+    this.currentView = <Landing beacons={this.state.beacons} />;
 
     this.changeView = this.changeView.bind(this);
   }
@@ -115,6 +117,10 @@ export default class BeaconMessages extends Component {
     });
   }
 
+  setLocked(state) {
+    this.locked = state;
+  }
+
   changeView(view) {
     let nextView;
 
@@ -126,7 +132,11 @@ export default class BeaconMessages extends Component {
         nextView = <Forms onDismiss={this.setBeaconImmediateLocation} />;
         break;
       case "messages":
-        nextView = <Messages onDismiss={this.setBeaconImmediateLocation} messages={this.state.beaconMessages} />;
+        nextView = <Messages 
+            onDismiss={this.setBeaconImmediateLocation} 
+            messages={this.state.beaconMessages} 
+            onLock={this.setLocked}
+            />;
         break;
       case "found":
         nextView = <Found />;
@@ -135,10 +145,11 @@ export default class BeaconMessages extends Component {
         nextView = <Landing beacons={this.state.beacons} />;
     }
 
-    return nextView;
+    this.currentView = nextView;
   }
 
   render() {
-    return this.state.isBeaconImmediate ? this.changeView('messages') : this.changeView('landing');
+    if (!this.locked) this.state.isBeaconImmediate ? this.changeView('messages') : this.changeView('landing');
+    return this.currentView;
   }
 }
