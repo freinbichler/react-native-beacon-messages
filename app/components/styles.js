@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     position: 'absolute',
+    zIndex: -1
   },
   mountains: {
     flex: 1,

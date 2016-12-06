@@ -25,6 +25,7 @@ export default class Messages extends Component {
         <View style={stylesComponent.separator}/>
       </View>
     );
+
     return (
       <View style={stylesComponent.container}>
         <Text style={stylesGlobal.logoText}>
@@ -41,11 +42,9 @@ export default class Messages extends Component {
 
         <View style={stylesComponent.flex2}>
 
-        <ScrollView
-          automaticallyAdjustContentInsets={false}
-          >
-        {messageTexts}
-        </ScrollView> 
+        <ScrollView automaticallyAdjustContentInsets={false}>
+          {messageTexts}
+        </ScrollView>
         </View>
 
       <View style={stylesComponent.flex3}>
@@ -71,9 +70,6 @@ const stylesComponent = StyleSheet.create({
   },
   flex2: {
     flex:7
-  },
-  flex1: {
-    flex:1
   },
   container: {
     paddingTop: 40,

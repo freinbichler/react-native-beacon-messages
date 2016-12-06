@@ -7,23 +7,22 @@ export default class Forms extends Component {
     super(props);
     this.state = {value: ''};
 
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.goBack = this.goBack.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
+    this.goToFound = this.goToFound.bind(this);
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.name);
-    alert('A text was submitted: ' + this.state.text);
     this.props.onMessage(this.state.name, this.state.text);
+    this.goToFound();
     event.preventDefault();
   }
 
   goBack() {
+    this.props.onChangeView('found', true);
+  }
+
+  goToFound() {
     this.props.onChangeView('found', true);
   }
 

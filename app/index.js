@@ -84,14 +84,13 @@ export default class BeaconMessages extends Component {
     this.listenForItems()
   }
 
-  sendMessage(name,text) {
+  sendMessage(name, text) {
     this.itemsRef.push({ beacon: this.state.immediateBeacon, name, text });
   }
 
   listenForItems() {
 
     this.itemsRef.on('value', (snap) => {
-
       // get children as an array
       var messages = [];
       var immediateBeacon = this.state.immediateBeacon;
@@ -104,7 +103,7 @@ export default class BeaconMessages extends Component {
         });
         this.setState({
           messages: messages,
-          beaconMessages: messages.filter(message => message.beacon === immediateBeacon)
+          beaconMessages: messages.filter(message => message.beacon === immediateBeacon).reverse()
         });
       });
 
