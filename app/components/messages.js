@@ -45,7 +45,7 @@ export default class Messages extends Component {
           automaticallyAdjustContentInsets={false}
           >
         {messageTexts}
-        </ScrollView> 
+        </ScrollView>
         </View>
 
       <View style={stylesComponent.flex3}>
@@ -71,9 +71,6 @@ const stylesComponent = StyleSheet.create({
   },
   flex2: {
     flex:7
-  },
-  flex1: {
-    flex:1
   },
   container: {
     paddingTop: 40,
