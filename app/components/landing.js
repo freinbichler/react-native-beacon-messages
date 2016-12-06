@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { stylesGlobal } from './styles.js';
+import { stylesGlobal,  constants } from './styles.js';
 
 export default class Landing extends Component {
   constructor(props) {
@@ -38,17 +38,50 @@ export default class Landing extends Component {
       </Text>
     );
     return (
-      <View style={{backgroundColor: this.calculateColor(),
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column', }}>
-        <Image source={require('../images/message_icon.png')} style={stylesGlobal.icon}/>
-        <Text style={stylesGlobal.message}>
-          Look for messages!
+      <View style={stylesGlobal.container}>
+        <Text style={stylesComponent.heading}>
+          PEAKON
         </Text>
+        <Text style={stylesComponent.subheading}>
+          FIND BEACONS, GET CLOSER TO THE PEAK AND LEAVE MESSAGES!
+        </Text>
+        <View style={stylesComponent.mountainContainer}>
+        <Image source={require('../images/mountain.png')} style={stylesComponent.mountains}/>
+        </View>
         {beaconTexts}
       </View>
     );
   }
 }
+
+const stylesComponent = StyleSheet.create({
+  mountainContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    position: 'absolute',
+  },
+  mountains: {
+    flex: 1,
+    resizeMode: 'contain', // or 'stretch'
+  },
+  heading: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    fontFamily: 'Superclarendon',
+    color: constants.textColor,
+    textAlign: 'center'
+  },
+  subheading: {
+    fontSize: 11,
+    fontFamily: 'Menlo',
+    color: constants.textColor,
+    textAlign: 'center',
+    width: 250,
+    lineHeight: 17,
+    letterSpacing: 1.5,
+    marginTop: 20
+  }
+  });

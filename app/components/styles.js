@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    backgroundColor: '#9dc3bf',
+    backgroundColor: '#9dc3bf'
   },
   message: {
     fontSize: 20,
