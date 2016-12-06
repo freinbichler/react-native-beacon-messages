@@ -5,18 +5,29 @@ import { stylesGlobal,  constants } from './styles.js';
 export default class Messages extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
   }
 
   render() {
+    const messageTexts = this.props.messages.map((message, index) =>
+      <View key={index}>
+        <Text>
+          {message.name}
+        </Text>
+        <Text>
+          {message.text}
+        </Text>
+      </View>
+    );
     return (
       <View style={stylesGlobal.container}>
         <Text style={stylesGlobal.logoText}>
           PEAKON
         </Text>
         <Text style={stylesComponent.heading}>
-        Messages
+          Messages
         </Text>
+
+        {messageTexts}
 
         <TouchableHighlight
           style={stylesComponent.button}
@@ -25,7 +36,7 @@ export default class Messages extends Component {
           <Text style={stylesGlobal.buttonText}>GO BACK</Text>
         </TouchableHighlight>
         <View style={stylesGlobal.mountainContainer}>
-        <Image source={require('../images/mountain.png')} style={stylesGlobal.mountains}/>
+          <Image source={require('../images/mountain.png')} style={stylesGlobal.mountains}/>
         </View>
       </View>
     );

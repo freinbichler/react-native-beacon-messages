@@ -28,7 +28,10 @@ export default class BeaconMessages extends Component {
 
     this.state = {
       beacons: [],
-      isBeaconImmediate: false
+      isBeaconImmediate: false,
+      messages: [],
+      beaconMessages: [],
+      immediateBeacon: 0
     };
 
     this.setBeaconImmediateLocation = this.setBeaconImmediateLocation.bind(this);
@@ -40,14 +43,22 @@ export default class BeaconMessages extends Component {
       'beaconsDidRange',
       (data) => {
         var isBeaconImmediate = this.state.isBeaconImmediate;
+        var immediateBeacon = this.state.immediateBeacon;
+        var beaconMessages = this.state.beaconMessages;
         data.beacons.forEach((beacon) => {
           if(beacon.proximity === "immediate") {
             isBeaconImmediate = true;
+            immediateBeacon = beacon.minor;
+            if(immediateBeacon !== this.state.immediateBeacon) {
+              beaconMessages = this.state.messages.filter(message => message.beacon === immediateBeacon);
+            }
           }
         });
         this.setState({
           beacons: data.beacons,
-          isBeaconImmediate: isBeaconImmediate
+          isBeaconImmediate: isBeaconImmediate,
+          immediateBeacon: immediateBeacon,
+          beaconMessages: beaconMessages
         });
         // alert(data.beacons[0].proximity);
         // data.region - The current region
@@ -69,21 +80,25 @@ export default class BeaconMessages extends Component {
   }
 
   listenForItems() {
-    // this.itemsRef.push({ name: "Hubert", text: "Hello World!" });
+    // this.itemsRef.push({ beacon: 37817, name: "Hubert", text: "Hello World!" });
 
     this.itemsRef.on('value', (snap) => {
 
       // get children as an array
-      var items = [];
+      var messages = [];
+      var immediateBeacon = this.state.immediateBeacon;
       snap.forEach((child) => {
-        items.push({
+        messages.push({
+          beacon: child.val().beacon,
           name: child.val().name,
           text: child.val().text,
           _key: child.key
         });
+        this.setState({
+          messages: messages,
+          beaconMessages: messages.filter(message => message.beacon === immediateBeacon)
+        });
       });
-
-      console.log(items);
 
       // this.setState({
       //   dataSource: this.state.dataSource.cloneWithRows(items)
@@ -99,7 +114,8 @@ export default class BeaconMessages extends Component {
   }
 
   render() {
-    // return <Messages onDismiss={this.setBeaconImmediateLocation} />
-    return this.state.isBeaconImmediate ? <Forms onDismiss={this.setBeaconImmediateLocation} /> : <Landing beacons={this.state.beacons} />;
+    // return <Messages onDismiss={this.setBeaconImmediateLocation} messages={this.state.beaconMessages} />
+    // return <Forms onDismiss={this.setBeaconImmediateLocation} />
+    return this.state.isBeaconImmediate ? <Found /> : <Landing beacons={this.state.beacons} />;
   }
 }
