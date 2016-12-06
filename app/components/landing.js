@@ -6,19 +6,20 @@ export default class Landing extends Component {
   constructor(props) {
     super(props);
 
-    this.emojis = {
-      1: '💃',
-      2: '🦄',
-      3: '☺️',
-      6: '😊',
-      8: '😐',
-      15: '😞',
-      25: '💩'
-    }
+    this.emojis = [
+      [0, '💃'],
+      [2, '🦄'],
+      [3, '☺️'],
+      [6, '😊'],
+      [8, '😐'],
+      [12, '😕'],
+      [15, '😞'],
+      [25, '💩']
+    ]
   }
 
   render() {
-    let emoji, distance;
+    let emojiIcon, distance;
     const beaconTexts = this.props.beacons.map((beacon) =>
       <Text key={beacon.minor}>
         {beacon.minor}: {beacon.proximity} ({beacon.accuracy})
@@ -27,13 +28,10 @@ export default class Landing extends Component {
 
     if (this.props.beacons.length) {
       distance = parseInt(this.props.beacons[0].accuracy);
-      const keys = this.emojis.keys;
-      const index = 1; 
-
-      for (key of keys) {
-        if(key < distance) index = key
-      }
-      emoji = this.emojis[index]
+      this.emojis.forEach((emoji) => {
+        if(emoji[0] <= distance) emojiIcon = emoji[1];
+      });
+      if(distance < 0) emojiIcon = '❌';
     }
 
     return (
@@ -49,15 +47,15 @@ export default class Landing extends Component {
           FIND BEACONS, GET CLOSER TO THE PEAK AND LEAVE MESSAGES!
         </Text>
         <View style={stylesGlobal.mountainContainer}>
-        <Image source={require('../images/mountain.png')} style={stylesGlobal.mountains}/>
+          <Image source={require('../images/mountain.png')} style={stylesGlobal.mountains}/>
         </View>
         <Text  style={stylesComponent.emoji}>
-        {emoji}
+          {emojiIcon}
         </Text>
         <Text  style={stylesComponent.distance}>
-        {distance}
+          {distance}
         </Text>
-        {beaconTexts}
+        {/*beaconTexts*/}
       </View>
     );
   }
@@ -84,7 +82,8 @@ const stylesComponent = StyleSheet.create({
   emoji: {
     marginVertical: 20,
     fontSize: 50,
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: 2
   },
   distance: {
     fontSize: 19,
