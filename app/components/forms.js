@@ -9,6 +9,7 @@ export default class Forms extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.goBack = this.goBack.bind(this);
   }
 
   handleChange(event) {
@@ -18,6 +19,10 @@ export default class Forms extends Component {
   handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
+  }
+
+  goBack() {
+    this.props.onChangeView('found', true);
   }
 
   render() {
@@ -51,7 +56,7 @@ export default class Forms extends Component {
         </TouchableHighlight>
         <TouchableHighlight
           underlayColor={constants.actionColor}
-          onPress={this.props.onDismiss}>
+          onPress={this.goBack}>
           <Text style={stylesGlobal.dismiss}>DISMISS</Text>
         </TouchableHighlight>
         <View style={stylesGlobal.mountainContainer}>

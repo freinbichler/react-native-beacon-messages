@@ -46,7 +46,7 @@ export default class BeaconMessages extends Component {
     var subscription = DeviceEventEmitter.addListener(
       'beaconsDidRange',
       (data) => {
-        var isBeaconImmediate = this.state.isBeaconImmediate;
+        var isBeaconImmediate = false;
         var immediateBeacon = this.state.immediateBeacon;
         var beaconMessages = this.state.beaconMessages;
         data.beacons.forEach((beacon) => {
@@ -117,39 +117,46 @@ export default class BeaconMessages extends Component {
     });
   }
 
-  setLocked(state) {
-    this.locked = state;
+  setLocked(lockState) {
+    this.locked = lockState;
   }
 
-  changeView(view) {
+  changeView(view, forceUpdate) {
     let nextView;
+    // if(forceUpdate) alert(view);
 
     switch(view) {
       case "landing":
         nextView = <Landing beacons={this.state.beacons} />;
         break;
       case "forms":
-        nextView = <Forms onDismiss={this.setBeaconImmediateLocation} />;
+        nextView = <Forms onDismiss={this.setBeaconImmediateLocation} onChangeView={this.changeView} />;
         break;
       case "messages":
-        nextView = <Messages 
-            onDismiss={this.setBeaconImmediateLocation} 
-            messages={this.state.beaconMessages} 
+        nextView = <Messages
+            onDismiss={this.setBeaconImmediateLocation}
+            onChangeView={this.changeView}
+            messages={this.state.beaconMessages}
             onLock={this.setLocked}
             />;
         break;
       case "found":
-        nextView = <Found />;
+        nextView = <Found onChangeView={this.changeView} />;
         break;
       default:
         nextView = <Landing beacons={this.state.beacons} />;
     }
 
     this.currentView = nextView;
+
+    if(forceUpdate) {
+      this.forceUpdate;
+      this.setLocked(true);
+    }
   }
 
   render() {
-    if (!this.locked) this.state.isBeaconImmediate ? this.changeView('messages') : this.changeView('landing');
+    if (!this.locked) this.state.isBeaconImmediate ? this.changeView('found', false) : this.changeView('landing', false);
     return this.currentView;
   }
 }

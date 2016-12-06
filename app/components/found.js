@@ -5,32 +5,42 @@ import { stylesGlobal,  constants } from './styles.js';
 export default class Found extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+
+    this.goToForm = this.goToForm.bind(this);
+    this.goToMessages = this.goToMessages.bind(this);
+  }
+
+  goToForm() {
+    this.props.onChangeView('forms', true);
+  }
+
+  goToMessages() {
+    this.props.onChangeView('messages', true);
   }
 
   render() {
     return (
       <View style={stylesGlobal.container}>
         <Text style={stylesGlobal.logoText}>
-        PEAKON
+          PEAKON
         </Text>
         <Image source={require('../images/surprise.png')} style={stylesComponent.icon}/>
         <Text style={stylesComponent.heading}>
-        Hell yeah!
+          Hell yeah!
         </Text>
         <Text style={stylesComponent.subheading}>
-        You found a beacon!
+          You found a beacon!
         </Text>
         <TouchableHighlight
           style={stylesComponent.button}
           underlayColor={constants.actionColor}
-          onPress={this.props.onPress}>
+          onPress={this.goToForm}>
           <Text style={stylesGlobal.buttonText}>LEAVE MESSAGE</Text>
         </TouchableHighlight>
         <TouchableHighlight
           style={stylesComponent.button}
           underlayColor={constants.actionColor}
-          onPress={this.props.onPress}>
+          onPress={this.goToMessages}>
           <Text style={stylesGlobal.buttonText}>READ BEACON MESSAGES</Text>
         </TouchableHighlight>
         <View style={stylesGlobal.mountainContainer}>

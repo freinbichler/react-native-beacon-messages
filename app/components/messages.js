@@ -5,6 +5,12 @@ import { stylesGlobal,  constants } from './styles.js';
 export default class Messages extends Component {
   constructor(props) {
     super(props);
+
+    this.goBack = this.goBack.bind(this);
+  }
+
+  goBack() {
+    this.props.onChangeView('found', true);
   }
 
   render() {
@@ -32,7 +38,7 @@ export default class Messages extends Component {
         <TouchableHighlight
           style={stylesComponent.button}
           underlayColor={constants.actionColor}
-          onPress={this.props.onPress}>
+          onPress={this.goBack}>
           <Text style={stylesGlobal.buttonText}>GO BACK</Text>
         </TouchableHighlight>
         <View style={stylesGlobal.mountainContainer}>
