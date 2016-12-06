@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native';
 
 const constants = {
   actionColor: '#24CE84',
-  textColor: '#fff'
+  textColor: '#fff',
+  bgColor: '#9dc3bf'
 };
 
 const styles = StyleSheet.create({
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    backgroundColor: '#9dc3bf',
+    backgroundColor: constants.bgColor
   },
   message: {
     fontSize: 20,
@@ -20,14 +21,43 @@ const styles = StyleSheet.create({
     margin: 10,
     color: constants.textColor,
   },
+  actionText: {
+    color: constants.textColor
+  },
+  buttonText: {
+    color: constants.bgColor,
+    fontSize: 12,
+    fontFamily: 'Menlo',
+    textAlign: 'center'
+  },
+  logoText: {
+    position: 'absolute',
+    top: 30,
+    left: 20,
+    fontSize: 12,
+    fontWeight: 'bold',
+    fontFamily: 'Superclarendon',
+    color: constants.textColor,
+  },
   icon: {
     width: 60,
     height: 40,
     margin: 10
   },
-  actionText: {
-    color: constants.textColor
-  }
+  mountainContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    bottom: -50,
+    left: 0,
+    right: 0,
+    position: 'absolute',
+  },
+  mountains: {
+    flex: 1,
+    resizeMode: 'contain', // or 'stretch'
+  },
 
 });
 
