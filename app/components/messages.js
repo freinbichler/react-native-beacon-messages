@@ -25,6 +25,7 @@ export default class Messages extends Component {
         <View style={stylesComponent.separator}/>
       </View>
     );
+
     return (
       <View style={stylesComponent.container}>
         <Text style={stylesGlobal.logoText}>
@@ -41,10 +42,8 @@ export default class Messages extends Component {
 
         <View style={stylesComponent.flex2}>
 
-        <ScrollView
-          automaticallyAdjustContentInsets={false}
-          >
-        {messageTexts}
+        <ScrollView automaticallyAdjustContentInsets={false}>
+          {messageTexts}
         </ScrollView>
         </View>
 
