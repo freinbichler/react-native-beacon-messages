@@ -34,7 +34,7 @@ export default class Landing extends Component {
   render() {
     const beaconTexts = this.props.beacons.map((beacon) =>
       <Text key={beacon.minor}>
-        {beacon.minor}: {beacon.proximity} ({beacon.rssi})
+        {beacon.minor}: {beacon.proximity} ({beacon.accuracy})
       </Text>
     );
     return (
