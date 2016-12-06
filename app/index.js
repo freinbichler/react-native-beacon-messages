@@ -89,7 +89,6 @@ export default class BeaconMessages extends Component {
   }
 
   listenForItems() {
-
     this.itemsRef.on('value', (snap) => {
       // get children as an array
       var messages = [];
@@ -106,10 +105,6 @@ export default class BeaconMessages extends Component {
           beaconMessages: messages.filter(message => message.beacon === immediateBeacon).reverse()
         });
       });
-
-      // this.setState({
-      //   dataSource: this.state.dataSource.cloneWithRows(items)
-      // });
 
     });
   }
