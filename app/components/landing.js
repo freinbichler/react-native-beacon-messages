@@ -45,8 +45,8 @@ export default class Landing extends Component {
         <Text style={stylesComponent.subheading}>
           FIND BEACONS, GET CLOSER TO THE PEAK AND LEAVE MESSAGES!
         </Text>
-        <View style={stylesComponent.mountainContainer}>
-        <Image source={require('../images/mountain.png')} style={stylesComponent.mountains}/>
+        <View style={stylesGlobal.mountainContainer}>
+        <Image source={require('../images/mountain.png')} style={stylesGlobal.mountains}/>
         </View>
         {beaconTexts}
       </View>
@@ -55,18 +55,6 @@ export default class Landing extends Component {
 }
 
 const stylesComponent = StyleSheet.create({
-  mountainContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    position: 'absolute',
-  },
-  mountains: {
-    flex: 1,
-    resizeMode: 'contain', // or 'stretch'
-  },
   heading: {
     fontSize: 30,
     fontWeight: 'bold',

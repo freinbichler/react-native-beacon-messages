@@ -3,6 +3,8 @@ import { View, Text, Image, StyleSheet, DeviceEventEmitter } from 'react-native'
 import Beacons from 'react-native-ibeacon';
 import Forms from './components/forms';
 import Landing from './components/landing';
+import Found from './components/found';
+import Messages from './components/messages';
 
 var region = {
   identifier: 'Estimote Candy',
@@ -69,6 +71,7 @@ export default class BeaconMessages extends Component {
   }
 
   render() {
+    // return <Messages onDismiss={this.setBeaconImmediateLocation} /> 
     return this.state.isBeaconImmediate ? <Forms onDismiss={this.setBeaconImmediateLocation} /> : <Landing beacons={this.state.beacons} />;
   }
 }
