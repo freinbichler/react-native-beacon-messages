@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const constants = {
-  actionColor: '#24CE84',
+  actionColor: '#4c8480',
   textColor: '#fff',
   bgColor: '#9dc3bf'
 };

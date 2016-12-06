@@ -39,6 +39,7 @@ export default class BeaconMessages extends Component {
     this.currentView = <Landing beacons={this.state.beacons} />;
 
     this.changeView = this.changeView.bind(this);
+    this.sendMessage = this.sendMessage.bind(this);
   }
 
   componentDidMount() {
@@ -83,8 +84,11 @@ export default class BeaconMessages extends Component {
     this.listenForItems()
   }
 
+  sendMessage(name,text) {
+    this.itemsRef.push({ beacon: this.state.immediateBeacon, name, text });
+  }
+
   listenForItems() {
-    // this.itemsRef.push({ beacon: 37817, name: "Hubert", text: "Hello World!" });
 
     this.itemsRef.on('value', (snap) => {
 
@@ -129,7 +133,9 @@ export default class BeaconMessages extends Component {
         nextView = <Landing beacons={this.state.beacons} />;
         break;
       case "forms":
-        nextView = <Forms onDismiss={this.setBeaconImmediateLocation} />;
+        nextView = <Forms onDismiss={this.setBeaconImmediateLocation} 
+                          onMessage={this.sendMessage}
+        />;
         break;
       case "messages":
         nextView = <Messages 

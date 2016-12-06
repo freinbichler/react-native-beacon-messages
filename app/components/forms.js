@@ -16,7 +16,9 @@ export default class Forms extends Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    alert('A name was submitted: ' + this.state.name);
+    alert('A text was submitted: ' + this.state.text);
+    this.props.onMessage(this.state.name, this.state.text);
     event.preventDefault();
   }
 
@@ -36,7 +38,7 @@ export default class Forms extends Component {
         </View>
         <TextInput
           style={stylesComponent.namefield}
-          onChangeText={(text) => this.setState({text})}
+          onChangeText={(name) => this.setState({name})}
           value={this.state.name}
           multiline={true}
           placeholder="Your name"
@@ -51,7 +53,7 @@ export default class Forms extends Component {
         <TouchableHighlight
           style={stylesComponent.button}
           underlayColor={constants.actionColor}
-          onPress={this.props.onPress}>
+          onPress={this.handleSubmit}>
           <Text style={stylesGlobal.buttonText}>LEAVE IT HERE</Text>
         </TouchableHighlight>
         <TouchableHighlight
